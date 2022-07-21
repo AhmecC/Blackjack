@@ -1,6 +1,7 @@
 import random
 import time
 
+
 def clear_page():
     print('\n' * 40)
     print(""" 
@@ -13,6 +14,8 @@ def clear_page():
     | $$$$$$$/| $$$$$$$$| $$  | $$|  $$$$$$/| $$ \  $$|  $$$$$$/| $$  | $$|  $$$$$$/| $$ \  $$
     |_______/ |________/|__/  |__/ \______/ |__/  \__/ \______/ |__/  |__/ \______/ |__/  \__/                
                           """)
+                          
+                          
 def blackjack_logo():
     print(""" 
  /$$$$$$$  /$$        /$$$$$$   /$$$$$$  /$$   /$$    /$$$$$  /$$$$$$   /$$$$$$  /$$   /$$
@@ -25,12 +28,16 @@ def blackjack_logo():
 |_______/ |________/|__/  |__/ \______/ |__/  \__/ \______/ |__/  |__/ \______/ |__/  \__/                
                       """)
 money = 2500
+
+
 def bet_calculator(money):
     bet = int(input(f"     You Have £{money}, How Much Would You Like To Put Down: "))
     while bet <0 or bet > money:
         bet = int(input(f"        Please Bet an Appropriate Amount: "))
     money -= bet
     return bet, money #Returns how much was bet, and how much they have left
+    
+    
 def initial_card_selector(deck):
     '''This Works out the first 2 cards delt, it is called for both the User and Computer giving a different output both times'''
     pictures = []
@@ -40,6 +47,8 @@ def initial_card_selector(deck):
         values.append(choice["value"])
         pictures.append(choice["art"])
     return pictures, values #returns a list of pictures and their corresponding values
+    
+    
 def extra_card_selector(cards, deck):
     '''If Player chooses Hit, this finds the extra card they receive'''
     pictures = cards[0]
@@ -48,6 +57,8 @@ def extra_card_selector(cards, deck):
     values.append(choice["value"])
     pictures.append(choice["art"])
     return pictures, values
+    
+    
 def card_shower(cards, i):
     pictures = cards[0] #This retrives the pictures and values of the cards
     values = cards[1]
@@ -69,6 +80,7 @@ def card_shower(cards, i):
             print(pictures[card])
         time.sleep(0.3)
 
+
     total_value = 0 #Works out the Total Value of the Cards
     for k in range(0, len(values)):
         total_value += values[k]
@@ -76,6 +88,8 @@ def card_shower(cards, i):
         if total_value > 21:
             total_value -=10
     return total_value, values #Returns the Total Value, and the Value list for adaptation
+    
+    
 def computer_hit(total_comp_value):
     '''If computer value < 13, this function assigns a random chance for it to Hit'''
     randomizer = random.randint(0,1)
@@ -86,6 +100,8 @@ def computer_hit(total_comp_value):
     else:
         card_shower(comp_cards, 4)
     return total_comp_value
+    
+    
 def end_output(total_comp_value):
     clear_page()
     card_shower(user_cards, 3)
@@ -94,6 +110,8 @@ def end_output(total_comp_value):
     else:
         card_shower(comp_cards, 4)
     return total_comp_value
+    
+    
 def winner_loser(money):
     global play_again
     if money <= 0:
@@ -241,8 +259,6 @@ HIDDEN_CARD = '''
 |XXXXXXX|
 |XXXXXXX|
  ------- '''
-
-
 
 
 play_again = True
